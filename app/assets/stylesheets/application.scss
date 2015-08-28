@@ -1,2 +1,23 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.sign_up_box {
+  border: 3px solid #000;
+  border-radius: 5px;
+  width: 50%;
+  margin: auto;
+}
+
+.mb_20 {
+  margin-bottom: 20px;
+}
+
+.mb_50 {
+  margin-bottom: 50px;
+}
+
+.money-img-size {
+  max-width: 200px;
+  max-height: 200px;
+  margin: auto;
+}

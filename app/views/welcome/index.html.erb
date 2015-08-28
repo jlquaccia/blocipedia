@@ -1,9 +1,20 @@
-<h1>Blocipedia: Social, Markdown Wikis</h1>
+<h1 class="text-center mb_50">Blocipedia: Social, Markdown Wikis</h1>
 
-<h3>Create and share Markdown Wikis</h3>
-<button>Sign up</button>
+<div class="sign_up_box text-center">
+  <h3>Create and share Markdown Wikis</h3>
+  <button class="btn btn-success mb_20">Sign up</button>
+</div>
 
-<h3>Create as many public wikis as you want!</h3>
-<h3>Create private wikis!</h3>
-<h3>Free Plan</h3>
-<h3>Premium Plan</h3>
+<div class="row text-center">
+  <div class="col-md-6">
+    <h3>Create as many public<br> wikis as you want!</h3>
+    <h3>Free Plan</h3>
+    <%= image_tag("no-money.jpg", :alt => "No money", class: 'img-responsive img-rounded money-img-size text-center') %>
+  </div>
+  <div class="col-md-6">
+    <h3>Create private wikis!</h3>
+    <br>
+    <h3>Premium Plan</h3>
+    <%= image_tag("money.jpeg", :alt => "Money", class: 'img-responsive img-rounded money-img-size text-center') %>
+  </div>
+</div>
