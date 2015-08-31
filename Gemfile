@@ -47,3 +47,7 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Devise
+gem 'devise'
+# Figaro - protector of sensitive data
+gem 'figaro', '1.0'
