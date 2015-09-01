@@ -10,6 +10,10 @@
 
 .mb_20 {
   margin-bottom: 20px;
+
+  a {
+    color: white;
+  }
 }
 
 .mb_50 {
@@ -20,4 +24,12 @@
   max-width: 200px;
   max-height: 200px;
   margin: auto;
+}
+
+.user-info {
+  margin-top: 9px;
+}
+
+.nav {
+  margin-top: 5px;
 }
