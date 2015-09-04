@@ -4,5 +4,27 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  has_many :wikis, dependent: :destroy #does this mean that if a user account is deleted that all information created under this user account will be deleted? (including wikis?)
+  after_initialize :default_to_standard
+  has_many :wikis, dependent: :destroy
+  # maybe try :wikis, dependent: :delete_all ???
+
+  def admin?
+    role == 'admin'
+  end
+
+  # Paid accounts
+  def premium?
+    role == 'premium'
+  end
+
+  # Free accounts
+  def standard?
+    role == 'standard'
+  end
+
+  def default_to_standard
+    self.role = 'standard' if self.role.nil?
+    # Apparently the line below will force the field to true even if you explicitly initialize it to false..
+    # self.role ||= 'standard' if self.role.nil?
+  end
 end

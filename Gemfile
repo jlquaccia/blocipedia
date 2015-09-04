@@ -51,3 +51,5 @@ gem 'spring',        group: :development
 gem 'devise'
 # Figaro - protector of sensitive data
 gem 'figaro', '1.0'
+# Pundit
+gem 'pundit'
