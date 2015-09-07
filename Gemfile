@@ -53,3 +53,5 @@ gem 'devise'
 gem 'figaro', '1.0'
 # Pundit
 gem 'pundit'
+# Faker
+gem 'faker'
