@@ -55,3 +55,5 @@ gem 'figaro', '1.0'
 gem 'pundit'
 # Faker
 gem 'faker'
+# Stripe
+gem 'stripe'
