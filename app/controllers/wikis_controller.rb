@@ -1,8 +1,8 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.all
-    
-    authorize Wiki, :index? # Example
+    @wikis = policy_scope(Wiki)
+    # @wikis = Wiki.all
+    # authorize Wiki, :index?
   end
 
   def show
@@ -43,7 +43,7 @@ class WikisController < ApplicationController
 
     authorize @wiki
 
-    if @wiki.update_attributes(params.require(:wiki).permit(:title, :body))
+    if @wiki.update_attributes(params.require(:wiki).permit(:title, :body, :private))
       flash[:notice] = "Wiki was updated."
       redirect_to @wiki
     else

@@ -34,4 +34,14 @@ class ChargesController < ApplicationController
       amount: Amount.default
     }
   end
+
+  def destroy
+    if current_user.update_attributes(role: "standard")
+      flash[:notice] = "You now have a standard Blocipedia account.  Feel free to upgrade back to premium at anytime!"
+      redirect_to root_path
+    else
+      flash[:error] = "There was an error downgrading your account.  Please contact technical support."
+      redirect_to edit_user_registration_path
+    end
+  end
 end
