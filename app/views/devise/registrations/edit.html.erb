@@ -37,9 +37,15 @@
   </div>
 <% end %>
 
-<h3>Upgrade my account</h3>
+<% if current_user.role == 'standard' || current_user.role == 'admin' %>
+  <h3>Upgrade my account</h3>
 
-Wanna go premium?  <%= link_to "Upgrade Now", new_charge_path %>
+  Wanna go premium?  <%= link_to "Upgrade Now", new_charge_path %>
+<%elsif current_user.role == 'premium' %>
+  <h3>Downgrade my account</h3>
+
+  <%= link_to "Back to Standard", charge_path(12345), data: { confirm: "Are you sure? You will no longer be able to create private wikis and all private wikis that may have been created will become public." }, method: :delete %>
+<% end %>
 
 <h3>Cancel my account</h3>
 
