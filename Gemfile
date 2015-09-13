@@ -57,3 +57,5 @@ gem 'pundit'
 gem 'faker'
 # Stripe
 gem 'stripe'
+# Markdown Support
+gem 'redcarpet'
