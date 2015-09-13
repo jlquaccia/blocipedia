@@ -8,7 +8,7 @@
   <div class="media">
     <div class="media-body">
       <h4 class="media-heading">
-        <p><%= link_to wiki.title, wiki %></p>
+        <p><%= link_to (markdown_to_html wiki.title), wiki %></p>
       </h4>
     </div>
   </div>
