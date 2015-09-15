@@ -59,3 +59,5 @@ gem 'faker'
 gem 'stripe'
 # Markdown Support
 gem 'redcarpet'
+# Pry
+gem 'pry'
