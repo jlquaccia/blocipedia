@@ -12,6 +12,34 @@
         <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
       </div>
       <%= render 'wikis/form', f: f %>
+      <% if @wiki.private == true && @wiki.user == current_user %>
+        <div class="form-group">
+          <h5>Add/Remove Collaborators to the <em>&ldquo;<%= @wiki.title %>&rdquo;</em> wiki (Showing all users)</h5>
+          <div class="col-sm-4 text-center outline">
+            <h6 class="underline">Name</h6>
+            <% User.all.each do |u| %>
+              <div class="border_bottom">
+                <%= u.name %><br>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-sm-4 text-center outline">
+            <h6 class="underline">Email</h6>
+            <% User.all.each do |u| %>
+              <div class="border_bottom">
+                <%= u.email %>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-sm-4 text-center outline">
+            <h6 class="underline">Give Access</h6>
+            <div class="border_bottom">
+              
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <br>
       <div class="form-group">
         <%= f.submit "Update", class: 'btn btn-success' %>
       </div>
