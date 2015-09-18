@@ -15,9 +15,14 @@
       <% if @wiki.private == true && @wiki.user == current_user %>
         <div class="form-group">
           <h5>Add/Remove Collaborators to the <em>&ldquo;<%= @wiki.title %>&rdquo;</em> wiki (Showing all users)</h5>
+          <small>
+            <div class="js-collaborators-count">
+              Currently there are <%= pluralize(@wiki.collaborators.count, 'collaborator') %> on this wiki.
+            </div>
+          </small>
           <div class="col-sm-4 text-center outline">
             <h6 class="underline">Name</h6>
-            <% User.all.each do |u| %>
+            <% @users.each do |u| %>
               <div class="border_bottom">
                 <%= u.name %><br>
               </div>
@@ -25,7 +30,7 @@
           </div>
           <div class="col-sm-4 text-center outline">
             <h6 class="underline">Email</h6>
-            <% User.all.each do |u| %>
+            <% @users.each do |u| %>
               <div class="border_bottom">
                 <%= u.email %>
               </div>
@@ -33,15 +38,20 @@
           </div>
           <div class="col-sm-4 text-center outline">
             <h6 class="underline">Give Access</h6>
-            <div class="border_bottom">
-              
-            </div>
+              <% @users.each do |u| %>
+                <div class="border_bottom">
+                  <% if collab = u.collaborators.find_by(wiki_id: @wiki.id) %>
+                    <%= link_to "Remove", wiki_collaborator_path(@wiki, collab), method: :delete, remote: true, id: u.id %>
+                  <% else %>
+                    <%= link_to "Add", wiki_collaborators_path(@wiki, user_id: u.id), method: :post, remote: true, id: u.id %>
+                  <% end %>
+                </div>
+              <% end %>
           </div>
         </div>
       <% end %>
-      <br>
       <div class="form-group">
-        <%= f.submit "Update", class: 'btn btn-success' %>
+        <%= f.submit "Update", class: 'btn btn-success mt_10' %>
       </div>
     <% end %>
   </div>
