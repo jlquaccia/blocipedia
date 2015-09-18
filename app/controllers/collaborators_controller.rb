@@ -3,7 +3,8 @@ class CollaboratorsController < ApplicationController
     Collaborator.create(wiki_id: params[:wiki_id], user_id: params[:user_id])
 
     render js: "$('#"+params[:user_id]+"').text('Remove');"
-               "$('js-collaborators-count').html('<%= escape_javascript(render partial: 'wikis/count') %>');"
+               "$('.js-collaborators-count').html('<%= escape_javascript(render partial: 'wikis/count')) %>');"
+  end
   end
 
   def destroy
@@ -12,6 +13,7 @@ class CollaboratorsController < ApplicationController
     collab.destroy
 
     render js: "$('#"+user_id.to_s+"').text('Add');"
-               "$('js-collaborators-count').html('<%= escape_javascript(render partial: 'wikis/count')) %>');"
+               "$('.js-collaborators-count').html('<%= escape_javascript(render partial: 'wikis/count')) %>');"
+  end
   end
 end
