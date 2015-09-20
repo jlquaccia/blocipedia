@@ -17,7 +17,7 @@
           <h5>Add/Remove Collaborators to the <em>&ldquo;<%= @wiki.title %>&rdquo;</em> wiki (Showing all users)</h5>
           <small>
             <div class="js-collaborators-count">
-              Currently there are <%= pluralize(@wiki.collaborators.count, 'collaborator') %> on this wiki.
+              Currently <%= pluralize(@wiki.collaborators.count, 'collaborator') %> on this wiki.
             </div>
           </small>
           <div class="col-sm-4 text-center outline">

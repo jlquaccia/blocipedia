@@ -1,0 +1,6 @@
+<% if @collab.destroyed? %>
+  $('#'+<%= @user_id.to_s %>).text('Add');
+  $('.js-collaborators-count').html("Currently <%= pluralize(@wiki.collaborators.count, 'collaborator') %> on this wiki.");
+<% else %>
+  $('#'+<%= @user_id.to_s %>).prepend("<div class='alert alert-danger'><%= flash[:error] = 'Oops something went wrong..' %></div>");
+<% end %>
