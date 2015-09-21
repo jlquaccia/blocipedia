@@ -1,0 +1,15 @@
+= form_tag charges_path do
+  %h4 So what comes with being a Blocipedia premium member?
+  %p The ability to create your very OWN private wikis of course!
+  %script.stripe-button{data: {key: @stripe_btn_data[:key], amount: @stripe_btn_data[:amount], description: @stripe_btn_data[:description]}, src: "https://checkout.stripe.com/checkout.js"}
+
+/ = form_tag charges_path do
+/   %h4 So what comes with being a Blocipedia premium member?
+/   %p The ability to create your very OWN private wikis of course!
+/   %script.stripe-button{"data-key" => @stripe_btn_data[:key], :src => "https://checkout.stripe.com/checkout.js", "data_amount" => @stripe_btn_data[:amount], "data_description" => @stripe_btn_data[:description]}
+
+/ <%= form_tag charges_path do %>
+/   <h4>So what comes with being a Blocipedia premium member? </h4>
+/   <p>The ability to create your very OWN private wikis of course!</p>
+/   <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount=<%= @stripe_btn_data[:amount] %> data-description="<%= @stripe_btn_data[:description] %>" ></script>
+/ <% end %>
