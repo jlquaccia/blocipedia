@@ -12,7 +12,7 @@
         <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
       </div>
       <%= render 'wikis/form', f: f %>
-      <% if @wiki.private == true && @wiki.user == current_user %>
+      <% if current_user.role == 'admin' || (@wiki.private == true && @wiki.user == current_user) %>
         <div class="form-group">
           <h5>Add/Remove Collaborators to the <em>&ldquo;<%= @wiki.title %>&rdquo;</em> wiki (Showing all users)</h5>
           <small>
