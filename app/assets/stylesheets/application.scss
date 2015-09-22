@@ -20,6 +20,10 @@
   margin-bottom: 50px;
 }
 
+.mt_10 {
+  margin-top: 10px;
+}
+
 .money-img-size {
   max-width: 200px;
   max-height: 200px;
@@ -32,4 +36,24 @@
 
 .nav {
   margin-top: 5px;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.outline {
+  border: 1px solid #000;
+}
+
+.border_bottom {
+  border-bottom: 1px solid #000;
+}
+
+.red {
+  color: red;
+
+  &:hover {
+    color: darken(red, 10%);
+  }
 }
