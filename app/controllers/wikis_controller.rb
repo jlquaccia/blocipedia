@@ -35,7 +35,7 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     @users = User.all
 
-    authorize @wiki
+    authorize Wiki, :edit?
   end
 
   def update
@@ -55,7 +55,7 @@ class WikisController < ApplicationController
   def destroy
     @wiki = Wiki.find(params[:id])
 
-    authorize @wiki
+    authorize Wiki, :destroy?
 
     if @wiki.destroy
       flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
