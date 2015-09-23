@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :charges, only: [:new, :create]
+  resources :charges, only: [:new, :create, :destroy]
   resources :wikis do
     resources :collaborators
   end

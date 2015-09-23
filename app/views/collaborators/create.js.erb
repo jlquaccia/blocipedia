@@ -1,6 +1,0 @@
-<% if @collaborator.save %>
-  $('#'+<%= params[:user_id] %>).replaceWith('<a data-method="delete" data-remote="true" href="/wikis/'+<%= @wiki.id %>+'/collaborators/'+<%= @collaborator.id %>+'" id="<%= @collaborator.user_id %>" rel="nofollow">Remove</a>');
-  $('.js-collaborators-count').html("Currently <%= pluralize(@wiki.collaborators.count, 'collaborator') %> on this wiki.");
-<% else %>
-  $('#'+<%= params[:user_id] %>).prepend("<div class='alert alert-danger'><%= flash[:error] = 'Oops something went wrong..' %></div>");
-<% end %>

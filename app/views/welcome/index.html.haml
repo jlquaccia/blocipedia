@@ -1,0 +1,16 @@
+%h1.text-center.mb_50 Blocipedia: Social, Markdown Wikis
+
+.sign_up_box.text-center
+  %h3 Create and share Markdown Wikis
+  %button.btn.btn-success.mb_20= link_to "Sign Up", new_user_registration_path
+
+.row.text-center
+  .col-md-6
+    %h3 Create as many public<br> wikis as you want!
+    %h3 Free Plan
+    = image_tag("no-money.jpg", :alt => "No money", class: 'img-responsive img-rounded money-img-size text-center')
+  .col-md-6
+    %h3 Create private wikis!
+    %br/
+    %h3 Premium Plan
+    = image_tag("money.jpeg", :alt => "Money", class: 'img-responsive img-rounded money-img-size text-center')
