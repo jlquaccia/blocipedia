@@ -1,0 +1,5 @@
+- if current_user.role == 'admin' || (current_user.role == 'premium' && @wiki.user == current_user)
+  .form-group
+    = f.label :private, class: 'checkbox' do
+      = f.check_box :private
+      Private Wiki

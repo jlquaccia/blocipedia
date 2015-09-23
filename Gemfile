@@ -60,3 +60,5 @@ gem 'faker'
 gem 'stripe'
 # Markdown Support
 gem 'redcarpet'
+# HAML
+gem 'haml'
