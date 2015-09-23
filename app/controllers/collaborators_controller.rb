@@ -7,11 +7,6 @@ class CollaboratorsController < ApplicationController
       format.html
       format.js
     end
-
-    # Collaborator.create(wiki_id: params[:wiki_id], user_id: params[:user_id])
-
-    # render js: "$('#"+params[:user_id]+"').text('Remove');"
-    #            "$('.js-collaborators-count').html('<%= escape_html(pluralize(@wiki.collaborators.count, 'collaborator')) %>');"
   end
 
   def destroy
