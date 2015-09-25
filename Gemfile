@@ -64,3 +64,5 @@ gem 'redcarpet'
 gem 'haml'
 # Readable URL's
 gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
+# EpicEditor
+gem 'epic-editor-rails'
