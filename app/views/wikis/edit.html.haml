@@ -6,10 +6,21 @@
       .form-group
         = f.label :title
         = f.text_field :title, class: 'form-control', placeholder: "Enter wiki title"
+    
+  .col-md-6
+    = form_for @wiki do |f|  
       .form-group#epiceditor
-        = f.label :body
+        = f.label :edit
         = f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body"
 
+  .col-md-6
+    = form_for @wiki do |f|  
+      .form-group#epiceditor
+        = f.label :preview
+        = f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body"
+
+  .col-md-8  
+    = form_for @wiki do |f|  
       - if current_user.role == 'admin' || (current_user.role == 'premium' && @wiki.user == current_user)
         = render 'wikis/form', f: f
         
