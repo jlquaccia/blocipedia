@@ -2,57 +2,66 @@
 
 .row
   .col-md-8
-    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    %h3 Change email or password
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :patch }) do |f|
       = devise_error_messages!
-
-      .form-group
-        = f.label :name
-        %br/
-        = f.text_field :name, autofocus: true, class: 'form-control'
 
       .form-group
         = f.label :email
         %br/
-        = f.email_field :email, class: 'form-control'
+        = f.email_field :email, class: 'form-control', placeholder: "Enter email", autofocus: true
 
       - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-        %div Currently waiting confirmation for: #{ resource.unconfirmed_email }
+        %div.form-group
+          %p Currently waiting confirmation for: #{ resource.unconfirmed_email }
 
       .form-group
         = f.label :password
         %i (leave blank if you don't want to change it)
         %br/
-        = f.password_field :password, autocomplete: "off", class: 'form-control'
+        = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: "Enter password"
 
       .form-group
         = f.label :password_confirmation
+        %i (leave blank if you don't want to change it)
         %br/
-        = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+        = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: "Enter password confirmation"
 
       .form-group
         = f.label :current_password
         %i (we need your current password to confirm your changes)
         %br/
-        = f.password_field :current_password, autocomplete: "off", class: 'form-control'
+        = f.password_field :current_password, autocomplete: "off", class: 'form-control', placeholder: "Enter current password"
 
-      .actions
+      .form-group
         = f.submit "Update", class: 'btn btn-success'
 
-      - if current_user.role == 'standard' || current_user.role == 'admin'
-        %h3 Upgrade my account
+    %h3 Edit personal information
 
-        Wanna go premium?
-        %br/
-        %br/
-        #{ link_to "Upgrade Now", new_charge_path, class: 'btn btn-success' }
+    = form_for(current_user) do |f|
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control', placeholder: "Enter name"
 
-      - elsif current_user.role == 'premium'
-        %h3 Downgrade my account
+      .form-group
+        = f.submit "Update", class: 'btn btn-success'
 
-        = link_to "Back to Standard", charge_path(12345), data: { confirm: "Are you sure? You will no longer be able to create private wikis and all private wikis that may have been created will become public." }, method: :delete, class: 'btn btn-danger'
+    - if current_user.role == 'standard' || current_user.role == 'admin'
+      %h3 Upgrade my account
 
-      %h3 Cancel my account
+      Wanna go premium?
+      %br/
+      %br/
+      #{ link_to "Upgrade Now", new_charge_path, class: 'btn btn-success' }
 
+    - elsif current_user.role == 'premium'
+      %h3 Downgrade my account
+
+      = link_to "Back to Standard", charge_path(12345), data: { confirm: "Are you sure? You will no longer be able to create private wikis and all private wikis that may have been created will become public." }, method: :delete, class: 'btn btn-danger'
+
+    %h3 Cancel my account
+
+    .form-group
       %p Unhappy? #{ button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' }
 
-      = link_to "Back", :back
+    = link_to "Back", :back
