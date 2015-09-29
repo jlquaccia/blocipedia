@@ -1,8 +1,9 @@
 class CollaboratorsController < ApplicationController
   def create
     @wiki = Wiki.friendly.find(params[:wiki_id])
-    @collaborator = Collaborator.create(wiki_id: params[:wiki_id], user_id: params[:user_id])
 
+
+    @collaborator = Collaborator.create(wiki_id: @wiki.id, user_id: params[:user_id])
     respond_to do |format|
       format.html
       format.js

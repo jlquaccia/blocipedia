@@ -33,27 +33,18 @@
           %small
             .js-collaborators-count
               Currently #{ pluralize(@wiki.collaborators.count, 'collaborator') } on this wiki.
-          .col-sm-4.text-center.outline
-            %h6.underline Name
-            - @users.each_with_index do |u, count|
-              %div{class: (count > 0 ? (count == @users.size - 1 ? 'no_border_bottom' : 'border_bottom') : 'border_bottom')}
-                = u.name
-                %br/
-              
-          .col-sm-4.text-center.outline
-            %h6.underline Email
-            - @users.each_with_index do |u, count|
-              %div{class: (count > 0 ? (count == @users.size - 1 ? 'no_border_bottom' : 'border_bottom') : 'border_bottom')} 
-                = u.email
 
-          .col-sm-4.text-center.outline
-            %h6.underline Give Access
-            - @users.each_with_index do |u, count|
-              %div{:class => (count > 0 ? (count == @users.size - 1 ? 'no_border_bottom' : 'border_bottom') : 'border_bottom')}
-                - if collab = u.collaborators.find_by(wiki_id: @wiki.id)
-                  = link_to "Remove", wiki_collaborator_path(@wiki, collab), method: :delete, remote: true, id: u.id
-                - else
-                  = link_to "Add", wiki_collaborators_path(@wiki, user_id: u.id), method: :post, remote: true, id: u.id
+            -apply_border_bottom(@users, "Name") do |zebra|
+              = zebra.name
+
+            -apply_border_bottom(@users, "Email") do |zebra|
+              = zebra.email
+
+            -apply_border_bottom(@users, "Give Access") do |zebra|
+              - if collab = zebra.collaborators.find_by(wiki_id: @wiki.id)
+                = link_to "Remove", wiki_collaborator_path(@wiki, collab), method: :delete, remote: true, id: zebra.id
+              - else
+                = link_to "Add", wiki_collaborators_path(@wiki, user_id: zebra.id), method: :post, remote: true, id: zebra.id
 
       .form-group
         = f.submit "Update", class: 'btn btn-success mt_10'
