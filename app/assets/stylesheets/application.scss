@@ -35,6 +35,16 @@
   margin: auto;
 }
 
+.checkbox {
+  input.ml_10 {
+    margin-left: 10px;
+  }
+}
+
+.ml_21 {
+  margin-left: 21px;
+}
+
 .money-img-size {
   max-width: 200px;
   max-height: 200px;
@@ -59,6 +69,10 @@
 
 .border_bottom {
   border-bottom: 1px solid #000;
+}
+
+.no_border_bottom {
+  border-bottom: none;
 }
 
 .red {
