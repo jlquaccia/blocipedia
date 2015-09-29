@@ -24,21 +24,21 @@
               Currently #{ pluralize(@wiki.collaborators.count, 'collaborator') } on this wiki.
           .col-sm-4.text-center.outline
             %h6.underline Name
-            - @users.each do |u|
-              .border_bottom
+            - @users.each_with_index do |u, count|
+              %div{class: (count > 0 ? (count == @users.size - 1 ? 'no_border_bottom' : 'border_bottom') : 'border_bottom')}
                 = u.name
                 %br/
               
           .col-sm-4.text-center.outline
             %h6.underline Email
-            - @users.each do |u|
-              .border_bottom
+            - @users.each_with_index do |u, count|
+              %div{class: (count > 0 ? (count == @users.size - 1 ? 'no_border_bottom' : 'border_bottom') : 'border_bottom')} 
                 = u.email
 
           .col-sm-4.text-center.outline
             %h6.underline Give Access
-            - @users.each do |u|
-              .border_bottom
+            - @users.each_with_index do |u, count|
+              %div{:class => (count > 0 ? (count == @users.size - 1 ? 'no_border_bottom' : 'border_bottom') : 'border_bottom')}
                 - if collab = u.collaborators.find_by(wiki_id: @wiki.id)
                   = link_to "Remove", wiki_collaborator_path(@wiki, collab), method: :delete, remote: true, id: u.id
                 - else
