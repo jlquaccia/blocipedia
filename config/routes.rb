@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :collaborators
   end
   devise_for :users
+  resources :users, only: [:update]
+
   get 'about' => 'welcome#about'
 
   root to: 'welcome#index'
