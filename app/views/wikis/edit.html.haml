@@ -34,17 +34,17 @@
             .js-collaborators-count
               Currently #{ pluralize(@wiki.collaborators.count, 'collaborator') } on this wiki.
 
-            -apply_border_bottom(@users, "Name") do |zebra|
-              = zebra.name
+          -create_collection_column(@users, "Name") do |user|
+            = user.name
 
-            -apply_border_bottom(@users, "Email") do |zebra|
-              = zebra.email
+          -create_collection_column(@users, "Email") do |user|
+            = user.email
 
-            -apply_border_bottom(@users, "Give Access") do |zebra|
-              - if collab = zebra.collaborators.find_by(wiki_id: @wiki.id)
-                = link_to "Remove", wiki_collaborator_path(@wiki, collab), method: :delete, remote: true, id: zebra.id
-              - else
-                = link_to "Add", wiki_collaborators_path(@wiki, user_id: zebra.id), method: :post, remote: true, id: zebra.id
+          -create_collection_column(@users, "Give Access") do |user|
+            - if collab = user.collaborators.find_by(wiki_id: @wiki.id)
+              = link_to "Remove", wiki_collaborator_path(@wiki, collab), method: :delete, remote: true, id: user.id
+            - else
+              = link_to "Add", wiki_collaborators_path(@wiki, user_id: user.id), method: :post, remote: true, id: user.id
 
       .form-group
         = f.submit "Update", class: 'btn btn-success mt_10'
