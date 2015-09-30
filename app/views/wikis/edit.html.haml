@@ -6,10 +6,21 @@
       .form-group
         = f.label :title
         = f.text_field :title, class: 'form-control', placeholder: "Enter wiki title"
-      .form-group
-        = f.label :body
+    
+  .col-md-6
+    = form_for @wiki do |f|  
+      .form-group#epiceditor
+        = f.label :edit
         = f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body"
 
+  .col-md-6
+    = form_for @wiki do |f|  
+      .form-group#epiceditor
+        = f.label :preview
+        = f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body"
+
+  .col-md-8  
+    = form_for @wiki do |f|  
       - if current_user.role == 'admin' || (current_user.role == 'premium' && @wiki.user == current_user)
         = render 'wikis/form', f: f
         
@@ -22,27 +33,21 @@
           %small
             .js-collaborators-count
               Currently #{ pluralize(@wiki.collaborators.count, 'collaborator') } on this wiki.
-          .col-sm-4.text-center.outline
-            %h6.underline Name
-            - @users.each_with_index do |u, count|
-              %div{class: (count > 0 ? (count == @users.size - 1 ? 'no_border_bottom' : 'border_bottom') : 'border_bottom')}
-                = u.name
-                %br/
-              
-          .col-sm-4.text-center.outline
-            %h6.underline Email
-            - @users.each_with_index do |u, count|
-              %div{class: (count > 0 ? (count == @users.size - 1 ? 'no_border_bottom' : 'border_bottom') : 'border_bottom')} 
-                = u.email
 
-          .col-sm-4.text-center.outline
-            %h6.underline Give Access
-            - @users.each_with_index do |u, count|
-              %div{:class => (count > 0 ? (count == @users.size - 1 ? 'no_border_bottom' : 'border_bottom') : 'border_bottom')}
-                - if collab = u.collaborators.find_by(wiki_id: @wiki.id)
-                  = link_to "Remove", wiki_collaborator_path(@wiki, collab), method: :delete, remote: true, id: u.id
-                - else
-                  = link_to "Add", wiki_collaborators_path(@wiki, user_id: u.id), method: :post, remote: true, id: u.id
+          -create_collection_column(@users, "Name") do |user|
+            = user.name
+
+          -create_collection_column(@users, "Email") do |user|
+            = user.email
+
+          -create_collection_column(@users, "Give Access") do |user|
+            - if collab = user.collaborators.find_by(wiki_id: @wiki.id)
+              = link_to "Remove", wiki_collaborator_path(@wiki, collab), method: :delete, remote: true, id: user.id
+            - else
+              = link_to "Add", wiki_collaborators_path(@wiki, user_id: user.id), method: :post, remote: true, id: user.id
 
       .form-group
         = f.submit "Update", class: 'btn btn-success mt_10'
+
+:javascript
+  var editor = new EpicEditor().load();
