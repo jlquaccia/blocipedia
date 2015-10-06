@@ -2,12 +2,12 @@
 
 .row
   .col-md-8
-    = form_for @wiki do |f|
+    = form_for Wiki.new do |f|
       .form-group
         = f.label :title
         = f.text_field :title, class: 'form-control', placeholder: "Enter wiki title"
 
-      .form-group
+      .form-group#epiceditor
         = f.label :body
         = f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body"
 
@@ -16,3 +16,6 @@
       
       .form-group
         = f.submit "Save", class: 'btn btn-success'
+
+:javascript
+  var editor = new EpicEditor({clientSideStorage: false}).load();
