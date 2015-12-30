@@ -8,11 +8,28 @@
     = csrf_meta_tags
   %body
     .container
+      / Navbar Hamburger
+      .navbar-header
+        %button.navbar-toggle.collapsed{"data-target" => "#main_nav", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle Navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+
       / Navbar
-      %ul.nav.nav-tabs
-        %li= link_to "Home", root_path
-        %li= link_to "About", about_path
-        %li= link_to "Wikis", wikis_path
+      / Collect the nav links, forms, and other content for toggling
+      #main_nav.collapse.navbar-collapse
+        %ul.nav.navbar-nav.mobile_nav
+          %li.mt10
+            = link_to "Home", root_path
+            %hr.hamburger_hr/
+          %li
+            = link_to "About", about_path
+            %hr.hamburger_hr/
+          %li
+            = link_to "Wikis", wikis_path
+            %hr.hamburger_hr/
+        
         .pull-right.user-info
           - if current_user
             Hello #{link_to (current_user.name || current_user.email), edit_user_registration_path}!
@@ -22,6 +39,7 @@
             = link_to "Sign In", new_user_session_path
             or
             =link_to "Sign Up", new_user_registration_path
+      
       / Flash Messages
       - if flash[:notice]
         .alert.alert-success

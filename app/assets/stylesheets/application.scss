@@ -51,10 +51,6 @@
   margin: auto;
 }
 
-.user-info {
-  margin-top: 9px;
-}
-
 .nav {
   margin-top: 5px;
 }
@@ -87,7 +83,81 @@ div#epiceditor {
     margin-bottom: 30px;
 }
 
+.navbar-toggle {
+  background-color: #fff;
+  border: 1px solid #000;
+}
+
+.navbar-toggle .icon-bar {
+  background-color: #000;
+}
+
+// #main_nav {
+//   background-color: #eeeeee;
+//   padding-bottom: 15px;
+// }
+
+.hamburger_hr {
+  display: none;
+}
+
+.navbar-nav {
+  li {
+    a {
+      color: #000;
+      font-size: 20px;
+      padding-top: 15px;
+
+      &:hover {
+        text-decoration: line-through;
+      }
+    }
+  }
+}
+
+.user-info {
+  margin-top: 15px;
+}
+
 // Responsiveness
+@media screen and (max-width: 768px) {
+  #main_nav {
+    background-color: #eeeeee;
+    padding-bottom: 15px;
+  }
+
+  .user-info {
+    background-color: rgba(0,0,0,0.1);
+    padding: 5px;
+    border-radius: 5px;
+
+    a {
+      color: #fff;
+    }
+  }
+
+  .hamburger_hr {
+    border-top: 1px solid #000;
+    margin: 20px 10px;
+    display: block;
+  }
+
+  .navbar-nav {
+    li {
+      a {
+        padding-top: 10px;
+      }
+    }
+  }
+
+  .nav {
+    margin-top: 5px;
+  }
+
+  .mt10 {
+    margin-top: 10px;
+  }
+}
 
 @media screen and (max-width: 700px) {
   .border_bottom {
